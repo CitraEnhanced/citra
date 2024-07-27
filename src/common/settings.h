@@ -540,9 +540,8 @@ struct Values {
     SwitchableSetting<bool> disable_flush_cpu_write{false, "disable_flush_cpu_write"};
     SwitchableSetting<bool> priority_boost_starved_threads{true, "priority_boost_starved_threads"};
     SwitchableSetting<bool> reduce_downcount_slice{false, "reduce_downcount_slice"};
-    // Reimplementation of old (and fixed) mandarine frameskip
-    // See
-    // https://github.com/MandarineEnhanced/mandarine/commit/e279a6955edf644cf832dd329ac72931aea8add7
+    // Reimplementation of old (and fixed) citra frameskip
+    // See https://github.com/mandarine3ds/mandarine/commit/e279a6955edf644cf832dd329ac72931aea8add7
     SwitchableSetting<u64> frame_skip{0, "frame_skip"};
 
     // Audio
