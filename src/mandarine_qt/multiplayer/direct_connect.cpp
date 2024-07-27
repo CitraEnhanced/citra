@@ -8,12 +8,12 @@
 #include <QRegularExpression>
 #include <QString>
 #include <QtConcurrent/QtConcurrentRun>
+#include "core/hle/service/cfg/cfg.h"
 #include "mandarine_qt/main.h"
 #include "mandarine_qt/multiplayer/direct_connect.h"
 #include "mandarine_qt/multiplayer/message.h"
 #include "mandarine_qt/multiplayer/validation.h"
 #include "mandarine_qt/uisettings.h"
-#include "core/hle/service/cfg/cfg.h"
 #include "network/network.h"
 #include "network/network_settings.h"
 #include "ui_direct_connect.h"

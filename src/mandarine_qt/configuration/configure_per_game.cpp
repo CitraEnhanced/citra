@@ -7,6 +7,10 @@
 #include <QPushButton>
 #include <QString>
 #include <fmt/format.h>
+#include "common/file_util.h"
+#include "core/core.h"
+#include "core/loader/loader.h"
+#include "core/loader/smdh.h"
 #include "mandarine_qt/configuration/config.h"
 #include "mandarine_qt/configuration/configure_audio.h"
 #include "mandarine_qt/configuration/configure_cheats.h"
@@ -18,10 +22,6 @@
 #include "mandarine_qt/configuration/configure_per_game.h"
 #include "mandarine_qt/configuration/configure_system.h"
 #include "mandarine_qt/util/util.h"
-#include "common/file_util.h"
-#include "core/core.h"
-#include "core/loader/loader.h"
-#include "core/loader/smdh.h"
 #include "ui_configure_per_game.h"
 #include "util/mica.h"
 
@@ -91,7 +91,8 @@ void ConfigurePerGame::showEvent(QShowEvent* event) {
 void ConfigurePerGame::ResetDefaults() {
     const auto config_file_name = title_id == 0 ? filename : fmt::format("{:016X}", title_id);
     QMessageBox::StandardButton answer = QMessageBox::question(
-        this, tr("Mandarine"), tr("Are you sure you want to <b>reset your settings for this game</b>?"),
+        this, tr("Mandarine"),
+        tr("Are you sure you want to <b>reset your settings for this game</b>?"),
         QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
 
     if (answer == QMessageBox::No) {

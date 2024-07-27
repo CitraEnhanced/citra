@@ -43,12 +43,12 @@ bool VirtualMemoryArea::CanBeMergedWith(const VirtualMemoryArea& next) const {
 
 template <class Archive>
 void VirtualMemoryArea::serialize(Archive& ar, const unsigned int) {
-    ar& base;
-    ar& size;
-    ar& type;
-    ar& permissions;
-    ar& meminfo_state;
-    ar& backing_memory;
+    ar & base;
+    ar & size;
+    ar & type;
+    ar & permissions;
+    ar & meminfo_state;
+    ar & backing_memory;
 }
 SERIALIZE_IMPL(VirtualMemoryArea)
 
@@ -290,7 +290,8 @@ ResultVal<VMManager::VMAIter> VMManager::CarveVMA(VAddr base, u32 size) {
 
 ResultVal<VMManager::VMAIter> VMManager::CarveVMARange(VAddr target, u32 size) {
     ASSERT_MSG((size & Memory::MANDARINE_PAGE_MASK) == 0, "non-page aligned size: {:#10X}", size);
-    ASSERT_MSG((target & Memory::MANDARINE_PAGE_MASK) == 0, "non-page aligned base: {:#010X}", target);
+    ASSERT_MSG((target & Memory::MANDARINE_PAGE_MASK) == 0, "non-page aligned base: {:#010X}",
+               target);
 
     const VAddr target_end = target + size;
     ASSERT(target_end >= target);
@@ -399,8 +400,8 @@ ResultVal<std::vector<std::pair<MemoryRef, u32>>> VMManager::GetBackingBlocksFor
 
 template <class Archive>
 void VMManager::serialize(Archive& ar, const unsigned int) {
-    ar& vma_map;
-    ar& page_table;
+    ar & vma_map;
+    ar & page_table;
     if (Archive::is_loading::value) {
         is_locked = true;
     }

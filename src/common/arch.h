@@ -9,5 +9,5 @@
 #define MANDARINE_ARCH(NAME) (MANDARINE_ARCH_##NAME)
 
 #define MANDARINE_ARCH_x86_64 BOOST_ARCH_X86_64
-#define MANDARINE_ARCH_arm64                                                                           \
+#define MANDARINE_ARCH_arm64                                                                       \
     (BOOST_ARCH_ARM >= BOOST_VERSION_NUMBER(8, 0, 0) && BOOST_ARCH_WORD_BITS == 64)

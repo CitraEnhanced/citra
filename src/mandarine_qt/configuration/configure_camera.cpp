@@ -9,10 +9,10 @@
 #include <QMediaDevices>
 #include <QMessageBox>
 #include <QWidget>
-#include "mandarine_qt/configuration/configure_camera.h"
 #include "common/settings.h"
 #include "core/frontend/camera/factory.h"
 #include "core/hle/service/cam/cam.h"
+#include "mandarine_qt/configuration/configure_camera.h"
 #include "ui_configure_camera.h"
 
 #if defined(__APPLE__)

@@ -5,13 +5,13 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QUrl>
+#include "common/file_util.h"
+#include "common/logging/backend.h"
+#include "common/settings.h"
 #include "mandarine_qt/configuration/configuration_shared.h"
 #include "mandarine_qt/configuration/configure_debug.h"
 #include "mandarine_qt/debugger/console.h"
 #include "mandarine_qt/uisettings.h"
-#include "common/file_util.h"
-#include "common/logging/backend.h"
-#include "common/settings.h"
 #include "ui_configure_debug.h"
 #ifdef ENABLE_VULKAN
 #include "video_core/renderer_vulkan/vk_instance.h"

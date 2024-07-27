@@ -10,9 +10,9 @@
 #include <QImage>
 #include <QMediaCaptureSession>
 #include <QVideoSink>
+#include "core/frontend/camera/interface.h"
 #include "mandarine_qt/camera/camera_util.h"
 #include "mandarine_qt/camera/qt_camera_base.h"
-#include "core/frontend/camera/interface.h"
 
 namespace Camera {
 

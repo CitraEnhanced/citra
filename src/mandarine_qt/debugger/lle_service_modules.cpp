@@ -6,8 +6,8 @@
 #include <QLabel>
 #include <QLayout>
 #include <QScrollArea>
-#include "mandarine_qt/debugger/lle_service_modules.h"
 #include "common/settings.h"
+#include "mandarine_qt/debugger/lle_service_modules.h"
 
 LLEServiceModulesWidget::LLEServiceModulesWidget(QWidget* parent)
     : QDockWidget(tr("Toggle LLE Service Modules"), parent) {

@@ -8,8 +8,8 @@
 #include <memory>
 #include <string>
 #include <QVariant>
-#include "mandarine_qt/uisettings.h"
 #include "common/settings.h"
+#include "mandarine_qt/uisettings.h"
 
 class QSettings;
 

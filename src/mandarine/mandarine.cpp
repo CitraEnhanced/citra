@@ -392,8 +392,8 @@ int main(int argc, char** argv) {
 
     const auto scope = emu_window->Acquire();
 
-    LOG_INFO(Frontend, "Mandarine Version: {} | {}-{}", Common::g_build_fullname, Common::g_scm_branch,
-             Common::g_scm_desc);
+    LOG_INFO(Frontend, "Mandarine Version: {} | {}-{}", Common::g_build_fullname,
+             Common::g_scm_branch, Common::g_scm_desc);
     Settings::LogSettings();
 
     const Core::System::ResultStatus load_result{
@@ -407,10 +407,11 @@ int main(int argc, char** argv) {
         LOG_CRITICAL(Frontend, "Failed to load ROM!");
         return -1;
     case Core::System::ResultStatus::ErrorLoader_ErrorEncrypted:
-        LOG_CRITICAL(Frontend, "The game that you are trying to load must be decrypted before "
-                               "being used with Mandarine. \n\n For more information on dumping and "
-                               "decrypting games, please refer to: "
-                               "https://citra-emu.org/wiki/dumping-game-cartridges/");
+        LOG_CRITICAL(Frontend,
+                     "The game that you are trying to load must be decrypted before "
+                     "being used with Mandarine. \n\n For more information on dumping and "
+                     "decrypting games, please refer to: "
+                     "https://citra-emu.org/wiki/dumping-game-cartridges/");
         return -1;
     case Core::System::ResultStatus::ErrorLoader_ErrorInvalidFormat:
         LOG_CRITICAL(Frontend, "Error while loading ROM: The ROM format is not supported.");

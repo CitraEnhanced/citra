@@ -77,10 +77,10 @@ private:
     friend class boost::serialization::access;
     template <typename Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
-        ar& vram;
-        ar& linear_heap;
-        ar& new_linear_heap;
-        ar& plugin_fb;
+        ar & vram;
+        ar & linear_heap;
+        ar & new_linear_heap;
+        ar & plugin_fb;
     }
 };
 
@@ -165,7 +165,8 @@ public:
         std::size_t page_offset = src_addr & MANDARINE_PAGE_MASK;
 
         while (remaining_size > 0) {
-            const std::size_t copy_amount = std::min(MANDARINE_PAGE_SIZE - page_offset, remaining_size);
+            const std::size_t copy_amount =
+                std::min(MANDARINE_PAGE_SIZE - page_offset, remaining_size);
             const auto current_vaddr =
                 static_cast<VAddr>((page_index << MANDARINE_PAGE_BITS) + page_offset);
 
@@ -214,7 +215,8 @@ public:
         std::size_t page_offset = dest_addr & MANDARINE_PAGE_MASK;
 
         while (remaining_size > 0) {
-            const std::size_t copy_amount = std::min(MANDARINE_PAGE_SIZE - page_offset, remaining_size);
+            const std::size_t copy_amount =
+                std::min(MANDARINE_PAGE_SIZE - page_offset, remaining_size);
             const auto current_vaddr =
                 static_cast<VAddr>((page_index << MANDARINE_PAGE_BITS) + page_offset);
 
@@ -318,20 +320,20 @@ private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
         bool save_n3ds_ram = Settings::values.is_new_3ds.GetValue();
-        ar& save_n3ds_ram;
+        ar & save_n3ds_ram;
         ar& boost::serialization::make_binary_object(vram.get(), Memory::VRAM_SIZE);
         ar& boost::serialization::make_binary_object(
             fcram.get(), save_n3ds_ram ? Memory::FCRAM_N3DS_SIZE : Memory::FCRAM_SIZE);
         ar& boost::serialization::make_binary_object(
             n3ds_extra_ram.get(), save_n3ds_ram ? Memory::N3DS_EXTRA_RAM_SIZE : 0);
-        ar& cache_marker;
-        ar& page_table_list;
+        ar & cache_marker;
+        ar & page_table_list;
         // dsp is set from Core::System at startup
-        ar& current_page_table;
-        ar& fcram_mem;
-        ar& vram_mem;
-        ar& n3ds_extra_ram_mem;
-        ar& dsp_mem;
+        ar & current_page_table;
+        ar & fcram_mem;
+        ar & vram_mem;
+        ar & n3ds_extra_ram_mem;
+        ar & dsp_mem;
     }
 };
 
@@ -422,7 +424,8 @@ void MemorySystem::MapPages(PageTable& page_table, u32 base, u32 size, MemoryRef
 void MemorySystem::MapMemoryRegion(PageTable& page_table, VAddr base, u32 size, MemoryRef target) {
     ASSERT_MSG((size & MANDARINE_PAGE_MASK) == 0, "non-page aligned size: {:08X}", size);
     ASSERT_MSG((base & MANDARINE_PAGE_MASK) == 0, "non-page aligned base: {:08X}", base);
-    MapPages(page_table, base / MANDARINE_PAGE_SIZE, size / MANDARINE_PAGE_SIZE, target, PageType::Memory);
+    MapPages(page_table, base / MANDARINE_PAGE_SIZE, size / MANDARINE_PAGE_SIZE, target,
+             PageType::Memory);
 }
 
 void MemorySystem::UnmapRegion(PageTable& page_table, VAddr base, u32 size) {
@@ -721,7 +724,8 @@ void MemorySystem::RasterizerMarkRegionCached(PAddr start, u32 size, bool cached
         return;
     }
 
-    u32 num_pages = ((start + size - 1) >> MANDARINE_PAGE_BITS) - (start >> MANDARINE_PAGE_BITS) + 1;
+    u32 num_pages =
+        ((start + size - 1) >> MANDARINE_PAGE_BITS) - (start >> MANDARINE_PAGE_BITS) + 1;
     PAddr paddr = start;
 
     for (unsigned i = 0; i < num_pages; ++i, paddr += MANDARINE_PAGE_SIZE) {

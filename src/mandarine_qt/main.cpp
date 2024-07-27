@@ -34,6 +34,17 @@
 #include <QtDBus/QtDBus>
 #include "common/linux/gamemode.h"
 #endif
+#include "common/arch.h"
+#include "common/common_paths.h"
+#include "common/detached_tasks.h"
+#include "common/dynamic_library/dynamic_library.h"
+#include "common/file_util.h"
+#include "common/literals.h"
+#include "common/logging/backend.h"
+#include "common/logging/log.h"
+#include "common/memory_detect.h"
+#include "common/scm_rev.h"
+#include "common/scope_exit.h"
 #include "mandarine_qt/aboutdialog.h"
 #include "mandarine_qt/applets/mii_selector.h"
 #include "mandarine_qt/applets/swkbd.h"
@@ -73,17 +84,6 @@
 #include "mandarine_qt/util/graphics_device_info.h"
 #include "mandarine_qt/util/mica.h"
 #include "mandarine_qt/util/util.h"
-#include "common/arch.h"
-#include "common/common_paths.h"
-#include "common/detached_tasks.h"
-#include "common/dynamic_library/dynamic_library.h"
-#include "common/file_util.h"
-#include "common/literals.h"
-#include "common/logging/backend.h"
-#include "common/logging/log.h"
-#include "common/memory_detect.h"
-#include "common/scm_rev.h"
-#include "common/scope_exit.h"
 #if MANDARINE_ARCH(x86_64)
 #include "common/x64/cpu_detect.h"
 #endif
@@ -229,8 +229,8 @@ GMainWindow::GMainWindow(Core::System& system_)
     ConnectMenuEvents();
     ConnectWidgetEvents();
 
-    LOG_INFO(Frontend, "Mandarine Version: {} | {}-{}", Common::g_build_fullname, Common::g_scm_branch,
-             Common::g_scm_desc);
+    LOG_INFO(Frontend, "Mandarine Version: {} | {}-{}", Common::g_build_fullname,
+             Common::g_scm_branch, Common::g_scm_desc);
 #if MANDARINE_ARCH(x86_64)
     const auto& caps = Common::GetCPUCaps();
     std::string cpu_string = caps.cpu_string;
@@ -1868,8 +1868,9 @@ bool GMainWindow::MakeShortcutIcoPath(const u64 program_id, const std::string_vi
     }
 
     // Create icon file path
-    out_icon_path /= (program_id == 0 ? fmt::format("mandarine-{}.{}", game_file_name, ico_extension)
-                                      : fmt::format("mandarine-{:016X}.{}", program_id, ico_extension));
+    out_icon_path /=
+        (program_id == 0 ? fmt::format("mandarine-{}.{}", game_file_name, ico_extension)
+                         : fmt::format("mandarine-{:016X}.{}", program_id, ico_extension));
     return true;
 }
 
@@ -1880,7 +1881,8 @@ void GMainWindow::OnGameListCreateShortcut(u64 program_id, const std::string& ga
     std::filesystem::path mandarine_command = args[0].toStdString();
     // If relative path, make it an absolute path
     if (mandarine_command.c_str()[0] == '.') {
-        mandarine_command = FileUtil::GetCurrentDir().value_or("") + DIR_SEP + mandarine_command.string();
+        mandarine_command =
+            FileUtil::GetCurrentDir().value_or("") + DIR_SEP + mandarine_command.string();
     }
 
     // Shortcut path
@@ -2208,7 +2210,8 @@ void GMainWindow::UninstallTitles(
     future_watcher.waitForFinished();
 
     if (failed) {
-        QMessageBox::critical(this, tr("Mandarine"), tr("Failed to uninstall '%1'.").arg(failed_name));
+        QMessageBox::critical(this, tr("Mandarine"),
+                              tr("Failed to uninstall '%1'.").arg(failed_name));
     } else if (!future_watcher.isCanceled()) {
         QMessageBox::information(this, tr("Mandarine"),
                                  tr("Successfully uninstalled '%1'.").arg(first_name));
@@ -2307,7 +2310,8 @@ void GMainWindow::OnLoadComplete() {
 }
 
 void GMainWindow::OnMenuReportCompatibility() {
-    if (!NetSettings::values.mandarine_token.empty() && !NetSettings::values.mandarine_username.empty()) {
+    if (!NetSettings::values.mandarine_token.empty() &&
+        !NetSettings::values.mandarine_username.empty()) {
         CompatDB compatdb{this};
         compatdb.exec();
     } else {
@@ -2845,7 +2849,8 @@ void GMainWindow::OnOpenFFmpeg() {
     FileUtil::ForeachDirectoryEntry(nullptr, bin_dir, process_file);
 
     if (success.load()) {
-        QMessageBox::information(this, tr("Mandarine"), tr("FFmpeg has been sucessfully installed."));
+        QMessageBox::information(this, tr("Mandarine"),
+                                 tr("FFmpeg has been sucessfully installed."));
     } else {
         QMessageBox::critical(this, tr("Mandarine"),
                               tr("Installation of FFmpeg failed. Check the log file for details."));

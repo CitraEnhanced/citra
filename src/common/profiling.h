@@ -8,11 +8,11 @@
 #include <tracy/Tracy.hpp>
 #include "common/scope_exit.h"
 
-#define MANDARINE_PROFILE(scope, text)                                                                 \
+#define MANDARINE_PROFILE(scope, text)                                                             \
     ZoneScopedN(text);                                                                             \
     ZoneText(scope, std::string::traits_type::length(scope));
 
-#define MANDARINE_SCOPED_FRAME(text)                                                                   \
+#define MANDARINE_SCOPED_FRAME(text)                                                               \
     constexpr const char* CONCAT2(FrameTitle, __LINE__) = text;                                    \
     detail::ScopeHelper([&]() { FrameMarkStart(CONCAT2(FrameTitle, __LINE__)); },                  \
                         [&]() { FrameMarkEnd(CONCAT2(FrameTitle, __LINE__)); })

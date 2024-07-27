@@ -5,19 +5,19 @@
 #include <QFileDialog>
 #include <QPushButton>
 #include <QTime>
-#include "mandarine_qt/game_list.h"
-#include "mandarine_qt/game_list_p.h"
-#include "mandarine_qt/movie/movie_play_dialog.h"
-#include "mandarine_qt/uisettings.h"
 #include "core/core.h"
 #include "core/core_timing.h"
 #include "core/hle/service/hid/hid.h"
 #include "core/movie.h"
+#include "mandarine_qt/game_list.h"
+#include "mandarine_qt/game_list_p.h"
+#include "mandarine_qt/movie/movie_play_dialog.h"
+#include "mandarine_qt/uisettings.h"
 #include "ui_movie_play_dialog.h"
 
 MoviePlayDialog::MoviePlayDialog(QWidget* parent, GameList* game_list_, const Core::System& system_)
-    : QDialog(parent),
-      ui(std::make_unique<Ui::MoviePlayDialog>()), game_list{game_list_}, system{system_} {
+    : QDialog(parent), ui(std::make_unique<Ui::MoviePlayDialog>()), game_list{game_list_},
+      system{system_} {
     ui->setupUi(this);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);

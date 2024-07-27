@@ -7,8 +7,8 @@
 #include <QMessageBox>
 #include <QString>
 #include <QVBoxLayout>
-#include "mandarine_qt/applets/mii_selector.h"
 #include "common/string_util.h"
+#include "mandarine_qt/applets/mii_selector.h"
 #include "util/mica.h"
 
 void QtMiiSelectorDialog::showEvent(QShowEvent* event) {

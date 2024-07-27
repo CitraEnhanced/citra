@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QMessageBox>
 #include <QStandardItemModel>
+#include "common/logging/log.h"
 #include "mandarine_qt/multiplayer/client_room.h"
 #include "mandarine_qt/multiplayer/direct_connect.h"
 #include "mandarine_qt/multiplayer/host_room.h"
@@ -15,7 +16,6 @@
 #include "mandarine_qt/multiplayer/state.h"
 #include "mandarine_qt/uisettings.h"
 #include "mandarine_qt/util/clickable_label.h"
-#include "common/logging/log.h"
 
 MultiplayerState::MultiplayerState(Core::System& system_, QWidget* parent,
                                    QStandardItemModel* game_list_model, QAction* leave_room,

@@ -12,10 +12,10 @@
 #include <QString>
 #include <QTimer>
 #include <QTranslator>
-#include "mandarine_qt/compatibility_list.h"
-#include "mandarine_qt/hotkeys.h"
 #include "core/core.h"
 #include "core/savestate.h"
+#include "mandarine_qt/compatibility_list.h"
+#include "mandarine_qt/hotkeys.h"
 
 #ifdef __unix__
 #include <QDBusObjectPath>

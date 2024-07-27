@@ -6,11 +6,11 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QUrl>
+#include "common/file_util.h"
+#include "common/settings.h"
 #include "mandarine_qt/configuration/configuration_shared.h"
 #include "mandarine_qt/configuration/configure_general.h"
 #include "mandarine_qt/uisettings.h"
-#include "common/file_util.h"
-#include "common/settings.h"
 #include "ui_configure_general.h"
 
 // The QSlider doesn't have an easy way to set a custom step amount,

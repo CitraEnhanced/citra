@@ -84,11 +84,11 @@ struct FSTEntry {
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& isDirectory;
-        ar& size;
+        ar & isDirectory;
+        ar & size;
         ar& Path::make(physicalName);
         ar& Path::make(virtualName);
-        ar& children;
+        ar & children;
     }
     friend class boost::serialization::access;
 };
@@ -272,7 +272,8 @@ public:
 
     // flags is used for windows specific file open mode flags, which
     // allows mandarine to open the logs in shared write mode, so that the file
-    // isn't considered "locked" while mandarine is open and people can open the log file and view it
+    // isn't considered "locked" while mandarine is open and people can open the log file and view
+    // it
     IOFile(const std::string& filename, const char openmode[], int flags = 0);
 
     ~IOFile();
@@ -453,13 +454,13 @@ private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
         ar& Path::make(filename);
-        ar& openmode;
-        ar& flags;
+        ar & openmode;
+        ar & flags;
         u64 pos;
         if (Archive::is_saving::value) {
             pos = Tell();
         }
-        ar& pos;
+        ar & pos;
         if (Archive::is_loading::value) {
             Open();
             Seek(pos, SEEK_SET);

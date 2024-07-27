@@ -6,8 +6,8 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QtConcurrent/qtconcurrentrun.h>
-#include "mandarine_qt/compatdb.h"
 #include "core/core.h"
+#include "mandarine_qt/compatdb.h"
 #include "ui_compatdb.h"
 
 CompatDB::CompatDB(QWidget* parent)

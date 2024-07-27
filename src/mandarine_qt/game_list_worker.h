@@ -12,9 +12,9 @@
 #include <QRunnable>
 #include <QString>
 #include <QVector>
+#include "common/common_types.h"
 #include "mandarine_qt/compatibility_list.h"
 #include "mandarine_qt/play_time_manager.h"
-#include "common/common_types.h"
 
 namespace Service::FS {
 enum class MediaType : u32;

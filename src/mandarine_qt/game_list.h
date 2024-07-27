@@ -8,9 +8,9 @@
 #include <QString>
 #include <QVector>
 #include <QWidget>
+#include "common/common_types.h"
 #include "mandarine_qt/compatibility_list.h"
 #include "mandarine_qt/play_time_manager.h"
-#include "common/common_types.h"
 #include "uisettings.h"
 
 namespace Service::FS {

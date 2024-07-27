@@ -9,8 +9,8 @@
 #include <QFutureWatcher>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
-#include "mandarine_qt/multiplayer/validation.h"
 #include "common/announce_multiplayer_room.h"
+#include "mandarine_qt/multiplayer/validation.h"
 #include "network/announce_multiplayer_session.h"
 #include "network/room_member.h"
 

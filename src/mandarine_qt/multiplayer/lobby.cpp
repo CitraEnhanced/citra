@@ -5,6 +5,8 @@
 #include <QInputDialog>
 #include <QList>
 #include <QtConcurrent/QtConcurrentRun>
+#include "common/logging/log.h"
+#include "core/hle/service/cfg/cfg.h"
 #include "mandarine_qt/game_list_p.h"
 #include "mandarine_qt/main.h"
 #include "mandarine_qt/multiplayer/lobby.h"
@@ -12,8 +14,6 @@
 #include "mandarine_qt/multiplayer/message.h"
 #include "mandarine_qt/multiplayer/validation.h"
 #include "mandarine_qt/uisettings.h"
-#include "common/logging/log.h"
-#include "core/hle/service/cfg/cfg.h"
 #include "network/network.h"
 #include "network/network_settings.h"
 #include "ui_lobby.h"

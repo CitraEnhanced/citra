@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <filesystem>
-#include "mandarine_qt/play_time_manager.h"
 #include "common/alignment.h"
 #include "common/common_paths.h"
 #include "common/file_util.h"
 #include "common/logging/log.h"
 #include "common/settings.h"
 #include "common/thread.h"
+#include "mandarine_qt/play_time_manager.h"
 
 namespace PlayTime {
 

@@ -183,9 +183,9 @@ Result TranslateCommandBuffer(Kernel::KernelSystem& kernel, Memory::MemorySystem
                        next_vma.meminfo_state == MemoryState::Reserved);
 
                 // Unmap the buffer and guard pages from the source process
-                Result result =
-                    src_process->vm_manager.UnmapRange(page_start - Memory::MANDARINE_PAGE_SIZE,
-                                                       (num_pages + 2) * Memory::MANDARINE_PAGE_SIZE);
+                Result result = src_process->vm_manager.UnmapRange(
+                    page_start - Memory::MANDARINE_PAGE_SIZE,
+                    (num_pages + 2) * Memory::MANDARINE_PAGE_SIZE);
                 ASSERT(result == ResultSuccess);
 
                 mapped_buffer_context.erase(found);
@@ -214,8 +214,9 @@ Result TranslateCommandBuffer(Kernel::KernelSystem& kernel, Memory::MemorySystem
 
             // Change the permissions and state of the guard pages.
             const VAddr low_guard_address = target_address;
-            const VAddr high_guard_address =
-                low_guard_address + static_cast<VAddr>(buffer->GetSize()) - Memory::MANDARINE_PAGE_SIZE;
+            const VAddr high_guard_address = low_guard_address +
+                                             static_cast<VAddr>(buffer->GetSize()) -
+                                             Memory::MANDARINE_PAGE_SIZE;
             ASSERT(dst_process->vm_manager.ChangeMemoryState(
                        low_guard_address, Memory::MANDARINE_PAGE_SIZE, Kernel::MemoryState::Shared,
                        Kernel::VMAPermission::ReadWrite, Kernel::MemoryState::Reserved,
@@ -257,11 +258,11 @@ Result TranslateCommandBuffer(Kernel::KernelSystem& kernel, Memory::MemorySystem
 
 template <class Archive>
 void MappedBufferContext::serialize(Archive& ar, const unsigned int) {
-    ar& permissions;
-    ar& size;
-    ar& source_address;
-    ar& target_address;
-    ar& buffer;
+    ar & permissions;
+    ar & size;
+    ar & source_address;
+    ar & target_address;
+    ar & buffer;
 }
 SERIALIZE_IMPL(MappedBufferContext)
 

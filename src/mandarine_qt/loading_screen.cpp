@@ -14,11 +14,11 @@
 #include <QStyleOption>
 #include <QTime>
 #include <fmt/format.h>
-#include "mandarine_qt/loading_screen.h"
-#include "mandarine_qt/util/util.h"
 #include "common/logging/log.h"
 #include "core/loader/loader.h"
 #include "core/loader/smdh.h"
+#include "mandarine_qt/loading_screen.h"
+#include "mandarine_qt/util/util.h"
 #include "ui_loading_screen.h"
 #include "video_core/rasterizer_interface.h"
 

@@ -160,13 +160,14 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
         return JNI_ERR;
 
     // Initialize misc classes
-    s_savestate_info_class = reinterpret_cast<jclass>(
-        env->NewGlobalRef(env->FindClass("io/github/mandarine3ds/mandarine/NativeLibrary$SaveStateInfo")));
-    s_core_error_class = reinterpret_cast<jclass>(
-        env->NewGlobalRef(env->FindClass("io/github/mandarine3ds/mandarine/NativeLibrary$CoreError")));
+    s_savestate_info_class = reinterpret_cast<jclass>(env->NewGlobalRef(
+        env->FindClass("io/github/mandarine3ds/mandarine/NativeLibrary$SaveStateInfo")));
+    s_core_error_class = reinterpret_cast<jclass>(env->NewGlobalRef(
+        env->FindClass("io/github/mandarine3ds/mandarine/NativeLibrary$CoreError")));
 
     // Initialize NativeLibrary
-    const jclass native_library_class = env->FindClass("io/github/mandarine3ds/mandarine/NativeLibrary");
+    const jclass native_library_class =
+        env->FindClass("io/github/mandarine3ds/mandarine/NativeLibrary");
     s_native_library_class = reinterpret_cast<jclass>(env->NewGlobalRef(native_library_class));
     s_on_core_error = env->GetStaticMethodID(
         s_native_library_class, "onCoreError",
@@ -183,22 +184,24 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     env->DeleteLocalRef(native_library_class);
 
     // Initialize Cheat
-    const jclass cheat_class = env->FindClass("io/github/mandarine3ds/mandarine/features/cheats/model/Cheat");
+    const jclass cheat_class =
+        env->FindClass("io/github/mandarine3ds/mandarine/features/cheats/model/Cheat");
     s_cheat_class = reinterpret_cast<jclass>(env->NewGlobalRef(cheat_class));
     s_cheat_pointer = env->GetFieldID(cheat_class, "mPointer", "J");
     s_cheat_constructor = env->GetMethodID(cheat_class, "<init>", "(J)V");
     env->DeleteLocalRef(cheat_class);
 
     // Initialize GameInfo
-    const jclass game_info_class = env->FindClass("io/github/mandarine3ds/mandarine/model/GameInfo");
+    const jclass game_info_class =
+        env->FindClass("io/github/mandarine3ds/mandarine/model/GameInfo");
     s_game_info_pointer = env->GetFieldID(game_info_class, "pointer", "J");
     env->DeleteLocalRef(game_info_class);
 
     // Initialize Disk Shader Cache Progress Dialog
-    s_disk_cache_progress_class = reinterpret_cast<jclass>(
-        env->NewGlobalRef(env->FindClass("io/github/mandarine3ds/mandarine/utils/DiskShaderCacheProgress")));
-    jclass load_callback_stage_class =
-        env->FindClass("io/github/mandarine3ds/mandarine/utils/DiskShaderCacheProgress$LoadCallbackStage");
+    s_disk_cache_progress_class = reinterpret_cast<jclass>(env->NewGlobalRef(
+        env->FindClass("io/github/mandarine3ds/mandarine/utils/DiskShaderCacheProgress")));
+    jclass load_callback_stage_class = env->FindClass(
+        "io/github/mandarine3ds/mandarine/utils/DiskShaderCacheProgress$LoadCallbackStage");
     s_disk_cache_load_progress = env->GetStaticMethodID(
         s_disk_cache_progress_class, "loadProgress",
         "(Lio/github/mandarine3ds/mandarine/utils/DiskShaderCacheProgress$LoadCallbackStage;II)V");
@@ -222,8 +225,8 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     env->DeleteLocalRef(load_callback_stage_class);
 
     // CIA Install
-    s_cia_install_helper_class = reinterpret_cast<jclass>(
-        env->NewGlobalRef(env->FindClass("io/github/mandarine3ds/mandarine/utils/CiaInstallWorker")));
+    s_cia_install_helper_class = reinterpret_cast<jclass>(env->NewGlobalRef(
+        env->FindClass("io/github/mandarine3ds/mandarine/utils/CiaInstallWorker")));
     s_cia_install_helper_set_progress =
         env->GetMethodID(s_cia_install_helper_class, "setProgressCallback", "(II)V");
     // Initialize CIA InstallStatus map

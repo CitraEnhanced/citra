@@ -68,9 +68,9 @@ CubebSink::CubebSink(std::string_view target_device_name) : impl(std::make_uniqu
         }
     }
 
-    auto stream_err = cubeb_stream_init(impl->ctx, &impl->stream, "MandarineAudio", nullptr, nullptr,
-                                        output_device, &params, std::max(512u, minimum_latency),
-                                        &Impl::DataCallback, &Impl::StateCallback, impl.get());
+    auto stream_err = cubeb_stream_init(
+        impl->ctx, &impl->stream, "MandarineAudio", nullptr, nullptr, output_device, &params,
+        std::max(512u, minimum_latency), &Impl::DataCallback, &Impl::StateCallback, impl.get());
     if (stream_err != CUBEB_OK) {
         switch (stream_err) {
         case CUBEB_ERROR:

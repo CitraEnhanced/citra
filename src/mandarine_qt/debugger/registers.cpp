@@ -3,10 +3,10 @@
 // Refer to the license.txt file included.
 
 #include <QTreeWidgetItem>
-#include "mandarine_qt/debugger/registers.h"
-#include "mandarine_qt/util/util.h"
 #include "core/arm/arm_interface.h"
 #include "core/core.h"
+#include "mandarine_qt/debugger/registers.h"
+#include "mandarine_qt/util/util.h"
 #include "ui_registers.h"
 
 RegistersWidget::RegistersWidget(const Core::System& system_, QWidget* parent)

@@ -18,13 +18,13 @@
 #include <QStandardItem>
 #include <QString>
 #include <QWidget>
-#include "mandarine_qt/play_time_manager.h"
-#include "mandarine_qt/uisettings.h"
-#include "mandarine_qt/util/util.h"
 #include "common/file_util.h"
 #include "common/logging/log.h"
 #include "common/string_util.h"
 #include "core/loader/smdh.h"
+#include "mandarine_qt/play_time_manager.h"
+#include "mandarine_qt/uisettings.h"
+#include "mandarine_qt/util/util.h"
 
 namespace Service::FS {
 enum class MediaType : u32;

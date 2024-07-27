@@ -8,16 +8,16 @@
 #include <vector>
 #include <QDir>
 #include <QFileInfo>
-#include "mandarine_qt/compatibility_list.h"
-#include "mandarine_qt/game_list.h"
-#include "mandarine_qt/game_list_p.h"
-#include "mandarine_qt/game_list_worker.h"
-#include "mandarine_qt/uisettings.h"
 #include "common/common_paths.h"
 #include "common/file_util.h"
 #include "core/hle/service/am/am.h"
 #include "core/hle/service/fs/archive.h"
 #include "core/loader/loader.h"
+#include "mandarine_qt/compatibility_list.h"
+#include "mandarine_qt/game_list.h"
+#include "mandarine_qt/game_list_p.h"
+#include "mandarine_qt/game_list_worker.h"
+#include "mandarine_qt/uisettings.h"
 
 namespace {
 bool HasSupportedFileExtension(const std::string& file_name) {
@@ -29,8 +29,8 @@ bool HasSupportedFileExtension(const std::string& file_name) {
 GameListWorker::GameListWorker(QVector<UISettings::GameDir>& game_dirs,
                                const CompatibilityList& compatibility_list,
                                const PlayTime::PlayTimeManager& play_time_manager_)
-    : game_dirs(game_dirs),
-      compatibility_list(compatibility_list), play_time_manager{play_time_manager_} {}
+    : game_dirs(game_dirs), compatibility_list(compatibility_list),
+      play_time_manager{play_time_manager_} {}
 
 GameListWorker::~GameListWorker() = default;
 

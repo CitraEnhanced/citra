@@ -3,9 +3,9 @@
 // Refer to the license.txt file included.
 
 #include <fmt/format.h>
-#include "mandarine_qt/debugger/ipc/record_dialog.h"
 #include "common/assert.h"
 #include "core/hle/kernel/ipc_debugger/recorder.h"
+#include "mandarine_qt/debugger/ipc/record_dialog.h"
 #include "ui_record_dialog.h"
 
 QString RecordDialog::FormatObject(const IPCDebugger::ObjectInfo& object) const {
