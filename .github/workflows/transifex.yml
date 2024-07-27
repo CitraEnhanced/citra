@@ -7,7 +7,7 @@ on:
 jobs:
   transifex:
     runs-on: ubuntu-latest
-    container: mandarine3ds/build-environments:linux-fresh
+    container: pablomk7/build-environments:linux-fresh
     if: ${{ github.repository == 'mandarine3ds/mandarine' }}
     steps:
       - uses: actions/checkout@v4
