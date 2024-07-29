@@ -679,22 +679,26 @@ JNIEXPORT jint JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManage
         NetPlayJoinRoom(GetJString(env, ipaddress), port, GetJString(env, username)));
 }
 
-JNIEXPORT jobjectArray JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayRoomInfo(
+JNIEXPORT jobjectArray JNICALL
+Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayRoomInfo(
     JNIEnv* env, [[maybe_unused]] jobject obj) {
     return ToJStringArray(env, NetPlayRoomInfo());
 }
 
-JNIEXPORT jboolean JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayIsJoined(
+JNIEXPORT jboolean JNICALL
+Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayIsJoined(
     [[maybe_unused]] JNIEnv* env, [[maybe_unused]] jobject obj) {
     return NetPlayIsJoined();
 }
 
-JNIEXPORT jboolean JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayIsHostedRoom(
+JNIEXPORT jboolean JNICALL
+Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayIsHostedRoom(
     [[maybe_unused]] JNIEnv* env, [[maybe_unused]] jobject obj) {
     return NetPlayIsHostedRoom();
 }
 
-JNIEXPORT void JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlaySendMessage(
+JNIEXPORT void JNICALL
+Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlaySendMessage(
     JNIEnv* env, [[maybe_unused]] jobject obj, jstring msg) {
     NetPlaySendMessage(GetJString(env, msg));
 }
@@ -709,7 +713,8 @@ JNIEXPORT void JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManage
     NetPlayLeaveRoom();
 }
 
-JNIEXPORT jstring JNICALL Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayGetConsoleId(
+JNIEXPORT jstring JNICALL
+Java_io_github_mandarine3ds_mandarine_utils_NetPlayManager_netPlayGetConsoleId(
     JNIEnv* env, [[maybe_unused]] jobject obj) {
     return ToJString(env, NetPlayGetConsoleId());
 }

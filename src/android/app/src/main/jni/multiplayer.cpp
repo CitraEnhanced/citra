@@ -1,4 +1,4 @@
-// Copyright 2024 Citra Enhanced Project
+// Copyright 2024 Mandarine Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
