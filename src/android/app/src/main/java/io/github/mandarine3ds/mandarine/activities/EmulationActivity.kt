@@ -129,6 +129,13 @@ class EmulationActivity : AppCompatActivity() {
         isEmulationRunning = savedInstanceState.getBoolean("isEmulationRunning", false)
     }
 
+    fun addNetPlayMessage(msg: String) {
+        if (msg.isEmpty()) {
+            return
+        }
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onDestroy() {
         NativeLibrary.enableAdrenoTurboMode(false)
         EmulationLifecycleUtil.clear()

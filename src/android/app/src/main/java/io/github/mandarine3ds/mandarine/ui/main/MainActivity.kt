@@ -36,7 +36,6 @@ import com.google.android.material.color.MaterialColors
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.launch
 import io.github.mandarine3ds.mandarine.R
-import io.github.mandarine3ds.mandarine.activities.EmulationActivity
 import io.github.mandarine3ds.mandarine.contracts.OpenFileResultContract
 import io.github.mandarine3ds.mandarine.databinding.ActivityMainBinding
 import io.github.mandarine3ds.mandarine.features.settings.model.Settings
@@ -167,6 +166,13 @@ class MainActivity : AppCompatActivity(), ThemeProvider {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    fun addNetPlayMessage(msg: String) {
+        if (msg.isEmpty()) {
+            return
+        }
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun setTheme(resId: Int) {

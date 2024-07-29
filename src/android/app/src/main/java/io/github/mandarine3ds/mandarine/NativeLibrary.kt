@@ -21,9 +21,11 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.mandarine3ds.mandarine.activities.EmulationActivity
+import io.github.mandarine3ds.mandarine.ui.main.MainActivity
 import io.github.mandarine3ds.mandarine.utils.EmulationMenuSettings
 import io.github.mandarine3ds.mandarine.utils.FileUtil
 import io.github.mandarine3ds.mandarine.utils.Log
+import io.github.mandarine3ds.mandarine.utils.NetPlayManager
 import java.lang.ref.WeakReference
 import java.util.Date
 
@@ -39,6 +41,7 @@ object NativeLibrary {
 
     @JvmField
     var sEmulationActivity = WeakReference<EmulationActivity?>(null)
+    var sMainActivity = WeakReference<MainActivity?>(null)
     private var alertResult = false
     val alertLock = Object()
 
@@ -528,6 +531,10 @@ object NativeLibrary {
     external fun loadAmiibo(path: String?): Boolean
 
     external fun removeAmiibo()
+
+    fun addNetPlayMessage(type: Int, message: String) {
+        NetPlayManager.addNetPlayMessage(type, message)
+    }
 
     const val SAVESTATE_SLOT_COUNT = 11
     const val QUICKSAVE_SLOT = 0
