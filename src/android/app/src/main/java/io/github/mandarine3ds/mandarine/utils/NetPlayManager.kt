@@ -1,4 +1,4 @@
-package org.citra.citra_emu.utils
+package io.github.mandarine3ds.mandarine.utils
 
 import android.app.Activity
 import android.app.AlertDialog
