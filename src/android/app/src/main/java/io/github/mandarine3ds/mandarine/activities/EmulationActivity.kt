@@ -191,6 +191,10 @@ class EmulationActivity : AppCompatActivity() {
         ).show()
     }
 
+    fun displayQuickSettings() {
+        QuickSettingsDialog.newInstance().show(supportFragmentManager, QuickSettingsDialog.TAG)
+    }
+
     private fun enableFullscreenImmersive() {
         val attributes = window.attributes
 

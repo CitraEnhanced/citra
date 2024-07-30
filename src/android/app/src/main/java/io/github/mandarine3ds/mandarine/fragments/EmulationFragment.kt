@@ -54,8 +54,6 @@ import io.github.mandarine3ds.mandarine.databinding.FragmentEmulationBinding
 import io.github.mandarine3ds.mandarine.display.ScreenAdjustmentUtil
 import io.github.mandarine3ds.mandarine.display.ScreenLayout
 import io.github.mandarine3ds.mandarine.features.settings.model.SettingsViewModel
-import io.github.mandarine3ds.mandarine.features.settings.ui.SettingsActivity
-import io.github.mandarine3ds.mandarine.features.settings.utils.SettingsFile
 import io.github.mandarine3ds.mandarine.model.Game
 import io.github.mandarine3ds.mandarine.utils.DirectoryInitialization
 import io.github.mandarine3ds.mandarine.utils.DirectoryInitialization.DirectoryInitializationState
@@ -311,11 +309,7 @@ class EmulationFragment : Fragment(), SurfaceHolder.Callback, Choreographer.Fram
                 }
 
                 R.id.menu_settings -> {
-                    SettingsActivity.launch(
-                        requireContext(),
-                        SettingsFile.FILE_NAME_CONFIG,
-                        ""
-                    )
+                    emulationActivity.displayQuickSettings()
                     true
                 }
 
