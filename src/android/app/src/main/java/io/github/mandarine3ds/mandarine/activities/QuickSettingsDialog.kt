@@ -7,6 +7,7 @@ package io.github.mandarine3ds.mandarine.activities
 import android.app.Dialog
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.mandarine3ds.mandarine.R
 import io.github.mandarine3ds.mandarine.features.settings.model.AbstractSetting
-import io.github.mandarine3ds.mandarine.features.settings.model.BooleanSetting
 import io.github.mandarine3ds.mandarine.features.settings.model.IntSetting
 import io.github.mandarine3ds.mandarine.features.settings.model.view.SettingsItem
 import io.github.mandarine3ds.mandarine.features.settings.model.view.SingleChoiceSetting
@@ -31,6 +31,8 @@ class QuickSettingsDialog : DialogFragment(), SettingsFragmentView {
             return QuickSettingsDialog()
         }
     }
+
+    override val activityView: SettingsActivityView? = null
 
     private lateinit var adapter: SettingsAdapter
     private lateinit var settingsList: ArrayList<SettingsItem>
@@ -58,30 +60,21 @@ class QuickSettingsDialog : DialogFragment(), SettingsFragmentView {
         val sl = ArrayList<SettingsItem>()
         sl.apply {
             add(
-                SwitchSetting(
-                    BooleanSetting.EXPAND_TO_CUTOUT_AREA,
-                    R.string.expand_to_cutout_area,
-                    R.string.expand_to_cutout_area_description,
-                    BooleanSetting.EXPAND_TO_CUTOUT_AREA.key,
-                    BooleanSetting.EXPAND_TO_CUTOUT_AREA.defaultValue
-                )
-            )
-            add(
                 SingleChoiceSetting(
-                    IntSetting.FRAME_SKIP,
-                    R.string.frame_skip,
-                    R.string.frame_skip_description,
-                    R.array.frameSkipNames,
-                    R.array.frameSkipValues,
-                    IntSetting.FRAME_SKIP.key,
-                    IntSetting.FRAME_SKIP.defaultValue
+                    IntSetting.RESOLUTION_FACTOR,
+                    R.string.internal_resolution,
+                    0,
+                    R.array.resolutionFactorNames,
+                    R.array.resolutionFactorValues,
+                    IntSetting.RESOLUTION_FACTOR.key,
+                    IntSetting.RESOLUTION_FACTOR.defaultValue
                 )
             )
             add(
                 SwitchSetting(
                     IntSetting.ENABLE_CUSTOM_CPU_TICKS,
                     R.string.enable_custom_cpu_ticks,
-                    R.string.enable_custom_cpu_ticks_description,
+                    0,
                     IntSetting.ENABLE_CUSTOM_CPU_TICKS.key,
                     IntSetting.ENABLE_CUSTOM_CPU_TICKS.defaultValue
                 )
@@ -100,34 +93,56 @@ class QuickSettingsDialog : DialogFragment(), SettingsFragmentView {
             )
             add(
                 SwitchSetting(
-                    IntSetting.USE_FRAME_LIMIT,
-                    R.string.frame_limit_enable,
-                    R.string.frame_limit_enable_description,
-                    IntSetting.USE_FRAME_LIMIT.key,
-                    IntSetting.USE_FRAME_LIMIT.defaultValue
+                    IntSetting.FORCE_HW_VERTEX_SHADERS,
+                    R.string.force_hw_vertex_shaders,
+                    0,
+                    IntSetting.FORCE_HW_VERTEX_SHADERS.key,
+                    IntSetting.FORCE_HW_VERTEX_SHADERS.defaultValue
+                )
+            )
+            add(
+                SwitchSetting(
+                    IntSetting.DISABLE_SURFACE_TEXTURE_COPY,
+                    R.string.disable_surface_texture_copy,
+                    0,
+                    IntSetting.DISABLE_SURFACE_TEXTURE_COPY.key,
+                    IntSetting.DISABLE_SURFACE_TEXTURE_COPY.defaultValue
+                )
+            )
+            add(
+                SwitchSetting(
+                    IntSetting.DISABLE_FLUSH_CPU_WRITE,
+                    R.string.disable_flush_cpu_write,
+                    0,
+                    IntSetting.DISABLE_FLUSH_CPU_WRITE.key,
+                    IntSetting.DISABLE_FLUSH_CPU_WRITE.defaultValue
                 )
             )
             add(
                 SliderSetting(
-                    IntSetting.FRAME_LIMIT,
-                    R.string.frame_limit_slider,
-                    R.string.frame_limit_slider_description,
-                    1,
-                    200,
-                    "%",
-                    IntSetting.FRAME_LIMIT.key,
-                    IntSetting.FRAME_LIMIT.defaultValue.toFloat()
+                    IntSetting.DELAY_RENDER_THREAD_US,
+                    R.string.delay_render_thread,
+                    0,
+                    0,
+                    16000,
+                    " μs",
+                    IntSetting.DELAY_RENDER_THREAD_US.key,
+                    IntSetting.DELAY_RENDER_THREAD_US.defaultValue.toFloat()
                 )
             )
         }
         settingsList = sl
     }
 
-    override val activityView: SettingsActivityView? = null
-
     override fun loadSubMenu(menuKey: String) {}
 
-    override fun showToastMessage(message: String?, is_long: Boolean) {}
+    override fun showToastMessage(message: String?, is_long: Boolean) {
+        Toast.makeText(
+            context,
+            message,
+            if (is_long) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        ).show()
+    }
 
     override fun putSetting(setting: AbstractSetting) {}
 
