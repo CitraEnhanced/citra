@@ -118,6 +118,10 @@ priority_boost_starved_threads =
 # 0: Software, 1: OpenGL (default), 2: Vulkan
 graphics_api =
 
+# Enables a vulkan extension that may improve the rendering quality. (Vulkan only)
+# 0 (default): Off, 1: On
+use_sample_shading =
+
 # Whether to render using GLES or OpenGL
 # 0 (default): OpenGL, 1: GLES
 use_gles =

@@ -129,6 +129,10 @@ async_shader_compilation =
 # 0: GLSL, 1: SPIR-V (default)
 spirv_shader_gen =
 
+# Enables a vulkan extension that may improve the rendering quality. (Vulkan only)
+# 0 (default): Off, 1: On
+use_sample_shading =
+
 # Whether to use hardware shaders to emulate 3DS shaders
 # 0: Software, 1 (default): Hardware
 use_hw_shader =

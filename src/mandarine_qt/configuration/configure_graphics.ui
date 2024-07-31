@@ -136,6 +136,16 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="sample_shading">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables a vulkan extension that may improve the rendering quality, at the cost of some performance.&lt;/p&gt;&lt;p&gt;Requires a relatively powerful GPU for better performance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Enable Sample Shading</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

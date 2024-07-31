@@ -58,6 +58,7 @@ ConfigureGraphics::ConfigureGraphics(QString gl_renderer, std::span<const QStrin
 
         ui->physical_device_combo->setVisible(false);
         ui->spirv_shader_gen->setVisible(false);
+        ui->sample_shading->setVisible(false);
     } else {
         for (const QString& name : physical_devices) {
             ui->physical_device_combo->addItem(name);
@@ -142,6 +143,7 @@ void ConfigureGraphics::SetConfiguration() {
     ui->toggle_disk_shader_cache->setChecked(Settings::values.use_disk_shader_cache.GetValue());
     ui->toggle_vsync_new->setChecked(Settings::values.use_vsync_new.GetValue());
     ui->spirv_shader_gen->setChecked(Settings::values.spirv_shader_gen.GetValue());
+    ui->sample_shading->setChecked(Settings::values.use_sample_shading.GetValue());
     ui->toggle_async_shaders->setChecked(Settings::values.async_shader_compilation.GetValue());
     ui->toggle_async_present->setChecked(Settings::values.async_presentation.GetValue());
     ui->toggle_force_hw_vertex_shaders->setChecked(
@@ -167,6 +169,8 @@ void ConfigureGraphics::ApplyConfiguration() {
                                              ui->toggle_async_present, async_presentation);
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.spirv_shader_gen,
                                              ui->spirv_shader_gen, spirv_shader_gen);
+    ConfigurationShared::ApplyPerGameSetting(&Settings::values.use_sample_shading,
+                                             ui->sample_shading, sample_shading);
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.use_hw_shader, ui->toggle_hw_shader,
                                              use_hw_shader);
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.shaders_accurate_mul,
@@ -261,6 +265,8 @@ void ConfigureGraphics::SetupPerGameUI() {
         ui->toggle_async_present, Settings::values.async_presentation, async_presentation);
     ConfigurationShared::SetColoredTristate(ui->spirv_shader_gen, Settings::values.spirv_shader_gen,
                                             spirv_shader_gen);
+    ConfigurationShared::SetColoredTristate(ui->sample_shading, Settings::values.use_sample_shading,
+                                            sample_shading);
     ConfigurationShared::SetColoredTristate(ui->toggle_force_hw_vertex_shaders,
                                             Settings::values.force_hw_vertex_shaders,
                                             force_hw_vertex_shaders);
@@ -292,5 +298,6 @@ void ConfigureGraphics::SetPhysicalDeviceComboVisibility(int index) {
 
     ui->physical_device_group->setVisible(effective_api == Settings::GraphicsAPI::Vulkan);
     ui->spirv_shader_gen->setVisible(effective_api == Settings::GraphicsAPI::Vulkan);
+    ui->sample_shading->setVisible(effective_api == Settings::GraphicsAPI::Vulkan);
     ui->opengl_renderer_group->setVisible(effective_api == Settings::GraphicsAPI::OpenGL);
 }

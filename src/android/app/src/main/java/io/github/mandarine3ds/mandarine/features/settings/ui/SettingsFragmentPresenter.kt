@@ -740,6 +740,15 @@ class SettingsFragmentPresenter(private val fragmentView: SettingsFragmentView) 
             )
             add(
                 SwitchSetting(
+                    BooleanSetting.USE_SAMPLE_SHADING,
+                    R.string.use_sample_shading,
+                    R.string.use_sample_shading_description,
+                    BooleanSetting.USE_SAMPLE_SHADING.key,
+                    BooleanSetting.USE_SAMPLE_SHADING.defaultValue,
+                )
+            )
+            add(
+                SwitchSetting(
                     BooleanSetting.ASYNC_SHADERS,
                     R.string.async_shaders,
                     R.string.async_shaders_description,
