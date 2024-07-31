@@ -311,7 +311,7 @@ void RendererVulkan::BuildPipelines() {
 
     const vk::PipelineMultisampleStateCreateInfo multisampling = {
         .rasterizationSamples = vk::SampleCountFlagBits::e1,
-        .sampleShadingEnable = true,
+        .sampleShadingEnable = Settings::values.use_sample_shading,
     };
 
     const vk::PipelineColorBlendAttachmentState colorblend_attachment = {
