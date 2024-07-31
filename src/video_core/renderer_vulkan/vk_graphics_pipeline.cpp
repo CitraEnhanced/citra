@@ -6,6 +6,7 @@
 
 #include "common/hash.h"
 #include "common/profiling.h"
+#include "common/settings.h"
 #include "video_core/renderer_vulkan/pica_to_vk.h"
 #include "video_core/renderer_vulkan/vk_graphics_pipeline.h"
 #include "video_core/renderer_vulkan/vk_instance.h"
@@ -158,7 +159,7 @@ bool GraphicsPipeline::Build(bool fail_on_compile_required) {
 
     const vk::PipelineMultisampleStateCreateInfo multisampling = {
         .rasterizationSamples = vk::SampleCountFlagBits::e1,
-        .sampleShadingEnable = Settings::values.use_sample_shading,
+        .sampleShadingEnable = Settings::values.use_sample_shading.GetValue(),
     };
 
     const vk::PipelineColorBlendAttachmentState colorblend_attachment = {

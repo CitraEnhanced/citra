@@ -2,6 +2,7 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
+#include "common/settings.h"
 #include "common/vector_math.h"
 #include "video_core/renderer_vulkan/vk_blit_helper.h"
 #include "video_core/renderer_vulkan/vk_descriptor_update_queue.h"
