@@ -94,7 +94,7 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     <string name="license_oboe" translatable="false">oboe</string>
     <string name="license_oboe_description" translatable="false">Oboe is a C++ library which makes it easy to build high-performance audio apps on Android</string>
     <string name="license_oboe_link" translatable="false">https://github.com/google/oboe/</string>
-    <string name="license_oboe_copyright" translatable="false">Copyright©️ Google</string>
+    <string name="license_oboe_copyright" translatable="false">Copyright © Google</string>
     <string name="license_oboe_text" tools:ignore="TypographyOther" translatable="false">
     \n
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n

@@ -16,7 +16,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import io.github.mandarine3ds.mandarine.NativeLibrary.InstallStatus
@@ -43,7 +42,7 @@ class DownloadSystemFilesDialogFragment : DialogFragment() {
 
         binding.progressBar.min = 0
         binding.progressBar.max = titles.size
-        if (downloadViewModel.isDownloading.value != true) {
+        if (!downloadViewModel.isDownloading.value) {
             binding.progressBar.progress = 0
         }
 

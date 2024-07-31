@@ -13,7 +13,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.mandarine3ds.mandarine.R
 import io.github.mandarine3ds.mandarine.applets.SoftwareKeyboard
 import io.github.mandarine3ds.mandarine.databinding.DialogSoftwareKeyboardBinding
-import io.github.mandarine3ds.mandarine.utils.SerializableHelper.serializable
 
 class KeyboardDialogFragment : DialogFragment() {
     private lateinit var config: SoftwareKeyboard.KeyboardConfig

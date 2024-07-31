@@ -33,7 +33,6 @@ import io.github.mandarine3ds.mandarine.adapters.HomeSettingAdapter
 import io.github.mandarine3ds.mandarine.databinding.DialogSoftwareKeyboardBinding
 import io.github.mandarine3ds.mandarine.databinding.FragmentHomeSettingsBinding
 import io.github.mandarine3ds.mandarine.features.settings.model.Settings
-import io.github.mandarine3ds.mandarine.features.settings.model.StringSetting
 import io.github.mandarine3ds.mandarine.features.settings.ui.SettingsActivity
 import io.github.mandarine3ds.mandarine.features.settings.utils.SettingsFile
 import io.github.mandarine3ds.mandarine.model.Game
@@ -96,7 +95,7 @@ class HomeSettingsFragment : Fragment() {
                         textInputValue = text.toString()
                     }
 
-                    val dialog = context?.let {
+                    context?.let {
                         MaterialAlertDialogBuilder(it)
                             .setView(inputBinding.root)
                             .setTitle(getString(R.string.artic_base_enter_address))

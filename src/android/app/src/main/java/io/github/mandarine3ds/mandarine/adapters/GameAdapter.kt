@@ -37,8 +37,6 @@ import io.github.mandarine3ds.mandarine.features.cheats.ui.CheatsFragmentDirecti
 import io.github.mandarine3ds.mandarine.model.Game
 import io.github.mandarine3ds.mandarine.utils.GameIconUtils
 import io.github.mandarine3ds.mandarine.viewmodel.GamesViewModel
-import io.github.mandarine3ds.mandarine.features.settings.ui.SettingsActivity
-import io.github.mandarine3ds.mandarine.features.settings.utils.SettingsFile
 
 class GameAdapter(private val activity: AppCompatActivity, private val inflater: LayoutInflater) :
     ListAdapter<Game, GameViewHolder>(AsyncDifferConfig.Builder(DiffCallback()).build()),

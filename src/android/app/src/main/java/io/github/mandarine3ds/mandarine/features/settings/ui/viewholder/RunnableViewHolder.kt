@@ -6,7 +6,6 @@ package io.github.mandarine3ds.mandarine.features.settings.ui.viewholder
 
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import io.github.mandarine3ds.mandarine.NativeLibrary
 import io.github.mandarine3ds.mandarine.databinding.ListItemSettingBinding
 import io.github.mandarine3ds.mandarine.features.settings.model.view.RunnableSetting
 import io.github.mandarine3ds.mandarine.features.settings.model.view.SettingsItem

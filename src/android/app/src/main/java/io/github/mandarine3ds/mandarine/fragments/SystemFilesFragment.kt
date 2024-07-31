@@ -30,7 +30,6 @@ import io.github.mandarine3ds.mandarine.MandarineApplication
 import io.github.mandarine3ds.mandarine.HomeNavigationDirections
 import io.github.mandarine3ds.mandarine.NativeLibrary
 import io.github.mandarine3ds.mandarine.R
-import io.github.mandarine3ds.mandarine.activities.EmulationActivity
 import io.github.mandarine3ds.mandarine.databinding.FragmentSystemFilesBinding
 import io.github.mandarine3ds.mandarine.features.settings.model.Settings
 import io.github.mandarine3ds.mandarine.model.Game
