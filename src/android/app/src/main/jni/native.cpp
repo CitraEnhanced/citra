@@ -29,6 +29,7 @@
 #include "common/scm_rev.h"
 #include "common/scope_exit.h"
 #include "common/settings.h"
+#include "common/string_util.h"
 #include "core/core.h"
 #include "core/frontend/applets/default_applets.h"
 #include "core/frontend/camera/factory.h"

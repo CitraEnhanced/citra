@@ -9,12 +9,14 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.provider.DocumentsContract
+import android.system.Os
 import android.util.Pair
 import androidx.documentfile.provider.DocumentFile
 import io.github.mandarine3ds.mandarine.MandarineApplication
 import io.github.mandarine3ds.mandarine.model.CheapDocument
 import java.io.BufferedInputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -24,10 +26,10 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 
 object FileUtil {
-    private const val PATH_TREE = "tree"
+    const val PATH_TREE = "tree"
     const val DECODE_METHOD = "UTF-8"
-    private const val APPLICATION_OCTET_STREAM = "application/octet-stream"
-    private const val TEXT_PLAIN = "text/plain"
+    const val APPLICATION_OCTET_STREAM = "application/octet-stream"
+    const val TEXT_PLAIN = "text/plain"
 
     val context: Context get() = MandarineApplication.appContext
 
@@ -311,6 +313,44 @@ object FileUtil {
         return false
     }
 
+    fun copyUriToInternalStorage(
+        sourceUri: Uri?,
+        destinationParentPath: String,
+        destinationFilename: String
+    ): Boolean {
+        var input: InputStream? = null
+        var output: FileOutputStream? = null
+        try {
+            input = context.contentResolver.openInputStream(sourceUri!!)
+            output = FileOutputStream("$destinationParentPath/$destinationFilename")
+            val buffer = ByteArray(1024)
+            var len: Int
+            while (input!!.read(buffer).also { len = it } != -1) {
+                output.write(buffer, 0, len)
+            }
+            output.flush()
+            return true
+        } catch (e: Exception) {
+            Log.error("[FileUtil]: Cannot copy file, error: " + e.message)
+        } finally {
+            if (input != null) {
+                try {
+                    input.close()
+                } catch (e: IOException) {
+                    Log.error("[FileUtil]: Cannot close input file, error: " + e.message)
+                }
+            }
+            if (output != null) {
+                try {
+                    output.close()
+                } catch (e: IOException) {
+                    Log.error("[FileUtil]: Cannot close output file, error: " + e.message)
+                }
+            }
+        }
+        return false
+    }
+
     fun copyDir(
         sourcePath: String,
         destinationPath: String,
@@ -406,6 +446,37 @@ object FileUtil {
         return false
     }
 
+    @Throws(IOException::class)
+    fun getBytesFromFile(file: DocumentFile): ByteArray {
+        val uri = file.uri
+        val length = getFileSize(uri.toString())
+
+        // You cannot create an array using a long type.
+        if (length > Int.MAX_VALUE) {
+            // File is too large
+            throw IOException("File is too large!")
+        }
+
+        val bytes = ByteArray(length.toInt())
+
+        var offset = 0
+        var numRead = 0
+        context.contentResolver.openInputStream(uri).use { inputStream ->
+            while (offset < bytes.size &&
+                inputStream!!.read(bytes, offset, bytes.size - offset).also { numRead = it } >= 0
+            ) {
+                offset += numRead
+            }
+        }
+
+        // Ensure all the bytes have been read in
+        if (offset < bytes.size) {
+            throw IOException("Could not completely read file " + file.name)
+        }
+
+        return bytes
+    }
+
     /**
      * Extracts the given zip file into the given directory.
      */
@@ -445,7 +516,7 @@ object FileUtil {
         return destinationDir.findFile(filename)
     }
 
-    private fun isRootTreeUri(uri: Uri): Boolean {
+    fun isRootTreeUri(uri: Uri): Boolean {
         val paths = uri.pathSegments
         return paths.size == 2 && PATH_TREE == paths[0]
     }
@@ -459,7 +530,23 @@ object FileUtil {
             false
         }
 
-    private fun closeQuietly(closeable: AutoCloseable?) {
+    fun getFreeSpace(context: Context, uri: Uri?): Double =
+        try {
+            val docTreeUri = DocumentsContract.buildDocumentUriUsingTree(
+                uri,
+                DocumentsContract.getTreeDocumentId(uri)
+            )
+            val pfd = context.contentResolver.openFileDescriptor(docTreeUri, "r")!!
+            val stats = Os.fstatvfs(pfd.fileDescriptor)
+            val spaceInGigaBytes = stats.f_bavail * stats.f_bsize / 1024.0 / 1024 / 1024
+            pfd.close()
+            spaceInGigaBytes
+        } catch (e: Exception) {
+            Log.error("[FileUtil] Cannot get storage size.")
+            0.0
+        }
+
+    fun closeQuietly(closeable: AutoCloseable?) {
         if (closeable != null) {
             try {
                 closeable.close()
@@ -491,11 +578,14 @@ object FileUtil {
     fun DocumentFile.inputStream(): InputStream =
         MandarineApplication.appContext.contentResolver.openInputStream(uri)!!
 
-    private fun DocumentFile.outputStream(): OutputStream =
+    fun DocumentFile.outputStream(): OutputStream =
         MandarineApplication.appContext.contentResolver.openOutputStream(uri)!!
 
     fun Uri.inputStream(): InputStream =
         MandarineApplication.appContext.contentResolver.openInputStream(this)!!
+
+    fun Uri.outputStream(): OutputStream =
+        MandarineApplication.appContext.contentResolver.openOutputStream(this)!!
 
     fun Uri.asDocumentFile(): DocumentFile? =
         DocumentFile.fromSingleUri(MandarineApplication.appContext, this)

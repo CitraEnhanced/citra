@@ -8,7 +8,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 
 object InsetsHelper {
-    const val GESTURE_NAVIGATION = 0
+    const val THREE_BUTTON_NAVIGATION = 0
+    const val TWO_BUTTON_NAVIGATION = 1
+    const val GESTURE_NAVIGATION = 2
 
     @SuppressLint("DiscouragedApi")
     fun getSystemGestureType(context: Context): Int {

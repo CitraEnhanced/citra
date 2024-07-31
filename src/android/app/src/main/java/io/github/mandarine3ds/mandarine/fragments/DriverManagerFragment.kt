@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import io.github.mandarine3ds.mandarine.R
 import io.github.mandarine3ds.mandarine.adapters.DriverAdapter
 import io.github.mandarine3ds.mandarine.databinding.FragmentDriverManagerBinding
+import io.github.mandarine3ds.mandarine.utils.FileUtil.asDocumentFile
 import io.github.mandarine3ds.mandarine.utils.FileUtil.inputStream
 import io.github.mandarine3ds.mandarine.utils.GpuDriverHelper
 import io.github.mandarine3ds.mandarine.viewmodel.HomeViewModel

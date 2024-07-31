@@ -5,12 +5,23 @@
 package io.github.mandarine3ds.mandarine.utils
 
 import android.view.InputDevice
+import android.view.KeyEvent
 import android.view.MotionEvent
 
 /**
  * Some controllers have incorrect mappings. This class has special-case fixes for them.
  */
 object ControllerMappingHelper {
+    /**
+     * Some controllers report extra button presses that can be ignored.
+     */
+    fun shouldKeyBeIgnored(inputDevice: InputDevice, keyCode: Int): Boolean {
+        return if (isDualShock4(inputDevice)) {
+            // The two analog triggers generate analog motion events as well as a keycode.
+            // We always prefer to use the analog values, so throw away the button press
+            keyCode == KeyEvent.KEYCODE_BUTTON_L2 || keyCode == KeyEvent.KEYCODE_BUTTON_R2
+        } else false
+    }
 
     /**
      * Scale an axis to be zero-centered with a proper range.

@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.mandarine3ds.mandarine.R
 import io.github.mandarine3ds.mandarine.applets.MiiSelector
+import io.github.mandarine3ds.mandarine.utils.SerializableHelper.serializable
 
 class MiiSelectorDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

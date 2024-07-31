@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.github.mandarine3ds.mandarine.databinding.DialogLicenseBinding
 import io.github.mandarine3ds.mandarine.model.License
+import io.github.mandarine3ds.mandarine.utils.SerializableHelper.parcelable
 
 class LicenseBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: DialogLicenseBinding? = null

@@ -147,7 +147,7 @@ class CiaInstallWorker(
         return Result.success()
     }
 
-    private fun setProgressCallback(max: Int, progress: Int) {
+    fun setProgressCallback(max: Int, progress: Int) {
         val currentTime = System.currentTimeMillis()
         // Android applies a rate limit when updating a notification.
         // If you post updates to a single notification too frequently,

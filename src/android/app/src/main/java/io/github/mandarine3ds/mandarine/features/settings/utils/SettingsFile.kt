@@ -28,6 +28,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.util.TreeMap
 
+
 /**
  * Contains static methods for interacting with .ini files in which settings are stored.
  */
@@ -46,7 +47,7 @@ object SettingsFile {
      * @param view         The current view.
      * @return An Observable that emits a HashMap of the file's contents, then completes.
      */
-    private fun readFile(
+    fun readFile(
         ini: DocumentFile,
         isCustomGame: Boolean,
         view: SettingsActivityView?
@@ -91,6 +92,8 @@ object SettingsFile {
     fun readFile(fileName: String, view: SettingsActivityView?): HashMap<String, SettingSection?> {
         return readFile(getSettingsFile(fileName), false, view)
     }
+
+    fun readFile(fileName: String): HashMap<String, SettingSection?> = readFile(fileName, null)
 
     /**
      * Reads a given .ini file from disk and returns it as a HashMap of SettingSections, themselves
@@ -161,6 +164,14 @@ object SettingsFile {
             outputStream.close()
         } catch (e: Exception) {
             Log.error("[SettingsFile] File not found: $fileName.ini: ${e.message}")
+        }
+    }
+
+    private fun mapSectionNameFromIni(generalSectionName: String): String? {
+        return if (sectionsMap.getForward(generalSectionName) != null) {
+            sectionsMap.getForward(generalSectionName)
+        } else {
+            generalSectionName
         }
     }
 
