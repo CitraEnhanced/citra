@@ -91,7 +91,7 @@ constexpr vk::PipelineRasterizationStateCreateInfo PIPELINE_RASTERIZATION_STATE_
 };
 constexpr vk::PipelineMultisampleStateCreateInfo PIPELINE_MULTISAMPLE_STATE_CREATE_INFO{
     .rasterizationSamples = vk::SampleCountFlagBits::e1,
-    .sampleShadingEnable = Settings::values.use_sample_shading ? VK_TRUE : VK_FALSE,
+    .sampleShadingEnable = Settings::values.use_sample_shading.GetValue() ? VK_TRUE : VK_FALSE,
     .minSampleShading = 0.0f,
     .pSampleMask = nullptr,
     .alphaToCoverageEnable = VK_FALSE,
